@@ -14,7 +14,6 @@ fim = '2015-12-31'
 # Filtra as linhas que se encontram dentro do período desejado
 df = df.loc[(df['time'] >= inicio) & (df['time'] <= fim)]
 
-
 # Define as colunas que serão usadas para prever a direção futura
 predictors = ['open', 'high', 'low', 'close', 'Volume', 'Volume MA']
 
