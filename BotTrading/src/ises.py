@@ -126,8 +126,7 @@ class Agent:
         self.es.train(iterations, print_every = checkpoint)
 
 ## Leitura de Dados
-df = pd.read_csv(rates_file)
-
+df = ...
 ## Definição de Simulação
 df['retorno'] = df.close.diff()
 df.dropna(inplace=True)
