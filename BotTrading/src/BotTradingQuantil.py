@@ -2,18 +2,12 @@ import os
 import pandas as pd
 import numpy as np 
 import time 
-
-
-from tqdm import tqdm
 from sklearn.metrics import accuracy_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.utils import class_weight
-
-
-
 
 
 #Iteração para preços relativos

@@ -3,12 +3,8 @@ import pandas as pd
 import time 
 
 from data.make_dataset import base_csv
-
-
 ## Variáveis de Controle
-rates_file = 'E:\\Projetos\\BotTrading-Quantil\\BotTrading\\src\\6A1.csv'
 window_size = 10
-
 ## Definições
 class Deep_Evolution_Strategy:
     inputs = None
