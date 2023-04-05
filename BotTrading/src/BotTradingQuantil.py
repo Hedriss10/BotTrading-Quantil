@@ -30,9 +30,7 @@ def request_data():
         print('*'*50)
         print(f'Ativo: {file_path}')            
         df = pd.read_csv(file_path, parse_dates=['time'])
-        # Filtra as linhas que se encontram dentro do período desejado
-        # df = df.loc[(df['time'] >= inicio) & (df['time'] <= fim)]
-        
+        df = df.loc[(df['time'] >= start_date) & (df['time'] <= end_date)]
         predicotors = ['open' , 'high', 'low', 'close', 'Volume', 'Volume MA']
         # Cria uma nova coluna "Direction", que indica se o preço subiu ou desceu em relação ao dia anterior
         df['direction'] = (df['close'] > df['close'].shift(1)).astype(int)
@@ -63,16 +61,16 @@ def request_data():
         # print(f'Análise de variação do preço: {validation}')
         print(f'Direção do mercado calculada se for 0 é shel e 1 buy: {df.direction.iloc[0]}')
         print(f"Previsão para o proxímo dia: {'up' if prediction == 1 else 'down'}")
-        print(f'Data Análisada: {fim}')
+        print(f'Data Análisada: {end_date}')
         print('*'*50)
-        
+        print(df.tail())
         
         
         
 if __name__ == "__main__":
     #Selecionando a data para o posicionamento
     last_time = time.perf_counter()
-    inicio = '2004-01-01'
-    fim = '2019-01-10'
+    start_date = '2004-01-01'
+    end_date = '2019-01-10'
     print(last_time)
     request_data()
