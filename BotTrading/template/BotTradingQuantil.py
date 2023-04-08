@@ -59,8 +59,6 @@ def request_data():
         print(f'Data Análisada: {end_date}')
         print('*'*50)
         
-        
-        
 if __name__ == "__main__":
     #Selecionando a data para o posicionamento
     last_time = time.perf_counter()
