@@ -1,8 +1,9 @@
 import os 
 import pandas as pd
 import numpy as np 
-import time 
+import pickle
 
+from datetime import timedelta, datetime
 from sklearn.metrics import accuracy_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report, confusion_matrix
@@ -58,14 +59,14 @@ def request_data():
         print(f"Previsão para o proxímo dia: {'up' if prediction == 1 else 'down'}")
         print(f'Data Análisada: {end_date}')
         print('*'*50)
-        print(df.tail())
+        # print(df.tail())
         
+        with open("modelo.pkl", 'wb') as f:
+          pickle.dump(model, f)
         
-        
+            
 if __name__ == "__main__":
     #Selecionando a data para o posicionamento
-    last_time = time.perf_counter()
-    start_date = '2004-01-01'
-    end_date = '2019-01-10'
-    print(last_time)
+    start_date = '2010-01-01'
+    end_date = '2019-02-10'  
     request_data()
