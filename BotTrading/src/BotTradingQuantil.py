@@ -66,7 +66,8 @@ def request_data():
         
             
 if __name__ == "__main__":
-    #Selecionando a data para o posicionamento
+    #Data padronizada porfavor não mecha
     start_date = '2010-01-01'
-    end_date = '2019-02-10'  
+    #Escolha a data para a previsão
+    end_date = '2023-02-08'
     request_data()

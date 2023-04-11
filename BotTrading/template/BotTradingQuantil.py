@@ -1,8 +1,10 @@
 import os 
 import pandas as pd
 import numpy as np 
-import time 
+import pickle
 
+from multiprocessing import cpu_count
+from datetime import timedelta, datetime
 from sklearn.metrics import accuracy_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report, confusion_matrix
@@ -10,6 +12,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.utils import class_weight
 
+start_software = os.cpu_count()
 
 #Iteração para preços relativos
 def lagit(df, langs):
@@ -58,11 +61,15 @@ def request_data():
         print(f"Previsão para o proxímo dia: {'up' if prediction == 1 else 'down'}")
         print(f'Data Análisada: {end_date}')
         print('*'*50)
+        # print(df.tail())
         
+        with open("modelo.pkl", 'wb') as f:
+          pickle.dump(model, f)
+        
+            
 if __name__ == "__main__":
-    #Selecionando a data para o posicionamento
-    last_time = time.perf_counter()
-    start_date = '2004-01-01'
-    end_date = '2019-01-10'
-    print(last_time)
+    #Data padronizada porfavor não mecha
+    start_date = '2010-01-01'
+    #Escolha a data para a previsão
+    end_date = '2023-03-10'  
     request_data()
