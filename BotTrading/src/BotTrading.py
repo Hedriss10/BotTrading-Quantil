@@ -42,21 +42,32 @@ class RequestDados:
             df['prediction_LR'] = model.predict(X)
             df['start'] = df['prediction_LR'] * df.ret
             validation = (df[['start', 'ret']] + 1).cumprod() -1 
+            sinal = None
             
-            if df['direction'].iloc[-1] == df['prediction_LR'].iloc[-1]:
-                sinal = "up"
-            else:
+            if df['direction'].iloc[-1] == 0 & df['prediction_LR'].iloc[-1] == 0:
                 sinal = "down"
+            
+            elif df['direction'].iloc[-1] == 1 & df['prediction_LR'].iloc[-1] == 1:
+                sinal = "up"
+            
+            else:
+                sinal = "Not identified"
+            
+            end_date_obj = datetime.strptime(end_date, '%Y-%m-%d').date()
+            next_date_obj =  end_date_obj + timedelta(days=1)
+            end_date_str = end_date_obj.strftime('%Y-%m-%d')
+            next_date_str = next_date_obj.strftime('%Y-%m-%d')
+            
+            
             
             dt = pd.DataFrame({
                 'Ativo': [os.path.basename(file_path)],
                 'Sinal': [sinal],
-                'Data' : [end_date]
+                'Data' : [next_date_str]
             })
             dt_lst.append(dt)
-        result = pd.concat(dt_lst)
+        result = pd.concat(dt_lst)        
         result.to_excel("Resultado\\ResultadoAnalise.xlsx", index=False)
-        
         folder = 'Resultado'
         if not os.path.exists(folder):
             os.makedirs("Resultado")
