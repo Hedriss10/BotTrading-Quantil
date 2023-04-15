@@ -9,5 +9,6 @@ from sklearn.utils import class_weight
 
 
 with open('modelo.pkl', 'rb') as f:
+    start_date = '2003-01-02'
     model = pickle.load(f)  
     print(model)
